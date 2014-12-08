@@ -66,13 +66,13 @@
 
     NSString *tmp=self.items[(NSUInteger) indexPath.row];
 
-    [cell.imageView setupWithURL:[NSURL URLWithString:[@"https://rd.floristretaildirect.com/login/logo?domain=" stringByAppendingString:tmp]] completed:^(NSError *error) {
-        // access using tableview instead of directly to prevent nulls?
+    [cell.imageView setupWithURL:[NSURL URLWithString:tmp] completed:^(NSError *error) {
+        // access using tableview's methods instead of directly
         [[tableView cellForRowAtIndexPath:indexPath] setNeedsLayout];
     }];
 
 
-    cell.textLabel.text = tmp;
+    cell.textLabel.text = [tmp stringByReplacingOccurrencesOfString:@"http://placehold.it/" withString:@""];;
     return cell;
 }
 
